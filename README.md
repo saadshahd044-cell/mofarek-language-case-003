@@ -8,423 +8,394 @@
 <style>
 *{
   box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
+  margin:0;
+  padding:0;
 }
 
 body{
-  margin:0;
   font-family:Tahoma,Arial,sans-serif;
-  background:
-    radial-gradient(circle at 10% 10%,#dff7ff 0 12%,transparent 30%),
-    radial-gradient(circle at 90% 20%,#f4ddff 0 10%,transparent 28%),
-    linear-gradient(135deg,#eef9ff,#fff8ed);
+  background:linear-gradient(135deg,#eef7ff,#fff7fc);
   color:#172554;
   min-height:100vh;
-  overflow-x:hidden;
 }
 
 button{
-  font:inherit;
+  font-family:inherit;
   cursor:pointer;
-  border:none;
 }
 
 .app{
-  max-width:900px;
+  width:min(100%,650px);
   margin:auto;
-  padding:14px;
+  padding:15px;
 }
 
-/* TOP */
 .topbar{
+  background:white;
+  border-radius:22px;
+  padding:14px 16px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:13px 16px;
-  background:rgba(255,255,255,.9);
-  border-radius:22px;
-  box-shadow:0 8px 25px rgba(30,41,59,.10);
-  position:relative;
-  z-index:5;
+  box-shadow:0 8px 25px #00000012;
+  margin-bottom:15px;
 }
 
 .logo{
-  font-weight:900;
+  font-weight:bold;
+  color:#1d4ed8;
 }
 
-.case-number{
-  background:#172554;
-  color:white;
+.case{
+  background:#eef2ff;
   padding:7px 12px;
-  border-radius:14px;
-  font-weight:900;
+  border-radius:20px;
+  font-weight:bold;
 }
 
-/* FLOATING ELEMENTS */
-.float{
-  position:absolute;
-  font-size:30px;
-  animation:float 3s ease-in-out infinite;
-  pointer-events:none;
-}
-
-.f1{top:25px;right:7%;}
-.f2{top:75px;left:8%;animation-delay:.7s;}
-.f3{bottom:25px;right:14%;animation-delay:1.2s;}
-.f4{bottom:40px;left:12%;animation-delay:1.8s;}
-
-@keyframes float{
-  50%{transform:translateY(-13px) rotate(8deg);}
-}
-
-/* HERO */
 .hero{
+  background:linear-gradient(135deg,#dbeafe,#fce7f3);
+  border-radius:30px;
+  padding:25px 18px;
+  text-align:center;
   position:relative;
   overflow:hidden;
-  margin-top:15px;
-  padding:30px 18px;
-  text-align:center;
-  background:rgba(255,255,255,.92);
-  border:3px solid #d9ecff;
-  border-radius:34px;
-  box-shadow:0 20px 50px rgba(30,41,59,.12);
-  animation:appear .6s ease;
+  box-shadow:0 12px 30px #00000015;
+}
+
+.floating{
+  position:absolute;
+  font-size:25px;
+  animation:float 3s infinite ease-in-out;
+}
+
+.f1{top:15px;right:20px}
+.f2{top:65px;left:25px;animation-delay:.5s}
+.f3{bottom:20px;right:35px;animation-delay:1s}
+.f4{bottom:45px;left:35px;animation-delay:1.5s}
+
+@keyframes float{
+  50%{transform:translateY(-10px) rotate(8deg)}
 }
 
 .detective{
-  display:block;
-  font-size:78px;
-  animation:bounce 2s ease-in-out infinite;
+  font-size:65px;
+  animation:bounce 2s infinite;
 }
 
 @keyframes bounce{
-  50%{transform:translateY(-9px);}
+  50%{transform:translateY(-6px)}
 }
 
-.hero h1{
-  font-size:clamp(28px,8vw,48px);
-  margin:10px 0;
-}
-
-.hero h1 span{
-  background:linear-gradient(90deg,#2563eb,#9333ea,#ec4899);
-  -webkit-background-clip:text;
-  color:transparent;
+h1{
+  font-size:30px;
+  margin:8px 0;
 }
 
 .hero p{
-  line-height:1.9;
-  max-width:650px;
-  margin:auto;
+  line-height:1.8;
+  font-size:15px;
+  color:#334155;
 }
 
-.start-btn,
-.next-btn,
-.finish-btn{
-  margin-top:18px;
+.start{
+  border:0;
+  background:#2563eb;
+  color:white;
   padding:14px 25px;
   border-radius:18px;
-  color:white;
-  font-weight:900;
-  background:linear-gradient(135deg,#2563eb,#7c3aed);
-  box-shadow:0 10px 25px rgba(37,99,235,.25);
+  font-size:17px;
+  font-weight:bold;
+  margin-top:18px;
+  box-shadow:0 8px 18px #2563eb44;
   transition:.2s;
 }
 
-.start-btn:hover,
-.next-btn:hover,
-.finish-btn:hover{
-  transform:translateY(-3px) scale(1.03);
-}
-
-/* GAME */
-.hidden{
-  display:none!important;
+.start:active{
+  transform:scale(.95);
 }
 
 .stats{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:9px;
-  margin-top:14px;
+  gap:10px;
+  margin:15px 0;
 }
 
 .stat{
   background:white;
   border-radius:18px;
-  padding:11px;
+  padding:13px 5px;
   text-align:center;
-  box-shadow:0 7px 20px rgba(30,41,59,.08);
-  font-weight:900;
+  box-shadow:0 6px 18px #0000000d;
 }
 
-.stat small{
+.stat strong{
   display:block;
+  font-size:21px;
+  color:#2563eb;
+}
+
+.stat span{
+  font-size:12px;
   color:#64748b;
-  margin-bottom:4px;
+}
+
+.progress-box{
+  background:white;
+  padding:12px;
+  border-radius:18px;
+  margin-bottom:15px;
 }
 
 .progress{
-  height:13px;
-  margin:13px 0;
-  background:#dbeafe;
-  border-radius:99px;
+  height:10px;
+  background:#e2e8f0;
+  border-radius:20px;
   overflow:hidden;
 }
 
 .progress-bar{
-  width:0;
   height:100%;
-  background:linear-gradient(90deg,#06b6d4,#6366f1,#ec4899);
-  transition:.5s;
+  width:0%;
+  background:#2563eb;
+  transition:.4s;
 }
 
-/* MISSION MENU */
+.game{
+  display:none;
+}
+
 .mission-menu{
   display:flex;
-  gap:8px;
+  gap:7px;
   overflow-x:auto;
-  padding:3px 0 8px;
+  margin-bottom:15px;
 }
 
-.mission-pill{
-  flex:0 0 auto;
-  padding:9px 13px;
+.mission-btn{
+  min-width:65px;
+  border:0;
   background:white;
+  padding:10px;
   border-radius:15px;
-  color:#475569;
-  font-weight:900;
+  font-weight:bold;
+  color:#64748b;
 }
 
-.mission-pill.active{
-  background:#172554;
+.mission-btn.active{
+  background:#2563eb;
   color:white;
 }
 
-/* CARD */
 .card{
-  background:rgba(255,255,255,.96);
-  border:3px solid #e3eaff;
-  border-radius:31px;
-  padding:20px 15px;
+  background:white;
+  border-radius:28px;
+  padding:22px 16px;
+  box-shadow:0 10px 30px #00000012;
   text-align:center;
-  box-shadow:0 20px 45px rgba(30,41,59,.11);
-  animation:appear .45s ease;
 }
 
-@keyframes appear{
-  from{
-    opacity:0;
-    transform:translateY(18px) scale(.98);
-  }
-  to{
-    opacity:1;
-    transform:none;
-  }
-}
-
-.file-tag{
-  display:inline-block;
-  background:#fff0b8;
-  color:#854d0e;
-  padding:7px 12px;
-  border-radius:13px;
-  font-weight:900;
-}
-
-.card h2{
-  font-size:clamp(23px,6vw,35px);
-  margin:12px 0 5px;
+.mission-title{
+  font-size:21px;
+  margin-bottom:10px;
 }
 
 .description{
-  color:#475569;
+  color:#64748b;
   line-height:1.8;
+  margin-bottom:18px;
 }
 
-/* TIMER */
 .timer{
-  max-width:430px;
-  margin:14px auto;
-}
-
-.timer-number{
-  font-size:28px;
-  font-weight:900;
-}
-
-.timer-line{
-  height:10px;
-  background:#e2e8f0;
-  border-radius:99px;
-  overflow:hidden;
-}
-
-.timer-bar{
-  width:100%;
-  height:100%;
-  background:#22c55e;
-  transition:width 1s linear;
-}
-
-.timer-danger{
-  animation:shake .35s infinite;
-}
-
-@keyframes shake{
-  25%{transform:translateX(7px);}
-  50%{transform:translateX(-7px);}
-  75%{transform:translateX(5px);}
-}
-
-/* VISUAL */
-.visual{
-  min-height:120px;
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  background:#eff6ff;
+  border:7px solid #bfdbfe;
   display:flex;
-  justify-content:center;
   align-items:center;
-  gap:10px;
-  margin:12px 0;
+  justify-content:center;
+  margin:0 auto 18px;
+  font-size:25px;
+  font-weight:bold;
+  color:#2563eb;
 }
 
-.big-emoji{
-  font-size:82px;
-  animation:bounce 1.8s ease-in-out infinite;
+.timer.warning{
+  background:#fff7ed;
+  border-color:#fed7aa;
+  color:#ea580c;
 }
 
-/* LETTERS */
+.timer.danger{
+  background:#fef2f2;
+  border-color:#fecaca;
+  color:#dc2626;
+  animation:pulse .7s infinite;
+}
+
+@keyframes pulse{
+  50%{transform:scale(1.08)}
+}
+
 .letters{
   display:flex;
   justify-content:center;
-  flex-wrap:wrap;
   gap:10px;
-  margin:15px 0;
+  flex-wrap:wrap;
+  margin:20px 0;
 }
 
 .letter{
-  min-width:58px;
-  padding:13px 17px;
-  border-radius:18px;
-  background:#eff6ff;
-  border:3px solid #bfdbfe;
-  color:#1d4ed8;
-  font-size:25px;
-  font-weight:900;
+  width:62px;
+  height:62px;
+  border:0;
+  border-radius:20px;
+  background:#dbeafe;
+  color:#1e40af;
+  font-size:27px;
+  font-weight:bold;
+  box-shadow:0 5px 12px #00000012;
   transition:.2s;
 }
 
-.letter:hover{
-  transform:translateY(-5px) rotate(-2deg);
+.letter:active{
+  transform:scale(.9);
 }
 
 .letter.selected{
-  background:#fef3c7;
-  border-color:#f59e0b;
-  animation:pop .35s;
+  background:#2563eb;
+  color:white;
+  transform:translateY(-5px);
 }
 
-@keyframes pop{
-  50%{transform:scale(1.1);}
+.answer{
+  min-height:65px;
+  border:3px dashed #bfdbfe;
+  border-radius:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  font-size:30px;
+  font-weight:bold;
+  color:#1e3a8a;
+  margin:15px 0;
 }
 
-.word-result{
-  min-height:40px;
-  font-size:20px;
-  font-weight:900;
+.image-box{
+  font-size:75px;
+  margin:10px 0 18px;
+  animation:float 3s infinite ease-in-out;
 }
 
-/* CHOICES */
 .choices{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:11px;
-  max-width:600px;
-  margin:15px auto;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:15px;
 }
 
 .choice{
+  border:0;
+  background:#f1f5f9;
+  border-radius:18px;
   padding:15px 10px;
-  border-radius:20px;
-  background:#f8fafc;
-  border:3px solid #dbeafe;
-  font-size:20px;
-  font-weight:900;
+  font-size:18px;
+  font-weight:bold;
+  color:#334155;
   transition:.2s;
 }
 
-.choice:hover{
-  transform:translateY(-4px) rotate(-1deg);
-  box-shadow:0 10px 20px rgba(30,41,59,.10);
+.choice:active{
+  transform:scale(.95);
 }
 
 .choice.correct{
   background:#dcfce7;
-  border-color:#22c55e;
-  animation:pop .45s;
+  color:#166534;
+  animation:correct .5s;
 }
 
 .choice.wrong{
   background:#fee2e2;
-  border-color:#ef4444;
+  color:#991b1b;
   animation:shake .4s;
 }
 
-/* FEEDBACK */
-.feedback{
-  min-height:48px;
-  font-size:18px;
-  font-weight:900;
-  margin:8px;
+@keyframes correct{
+  50%{transform:scale(1.08)}
 }
 
-.retry-btn{
-  padding:11px 18px;
-  border-radius:15px;
+@keyframes shake{
+  25%{transform:translateX(7px)}
+  50%{transform:translateX(-7px)}
+  75%{transform:translateX(5px)}
+}
+
+.feedback{
+  margin-top:15px;
+  font-weight:bold;
+  line-height:1.7;
+  min-height:30px;
+}
+
+.retry{
+  display:none;
+  border:0;
   background:#f59e0b;
   color:white;
-  font-weight:900;
+  padding:12px 20px;
+  border-radius:16px;
+  font-weight:bold;
+  margin:12px auto 0;
 }
 
-.next-btn{
+.next{
+  display:none;
+  border:0;
   background:#16a34a;
-  margin-top:5px;
+  color:white;
+  padding:12px 20px;
+  border-radius:16px;
+  font-weight:bold;
+  margin:12px auto 0;
 }
 
-/* FINISH */
-.finish-screen{
+.final{
+  display:none;
+  background:white;
+  border-radius:28px;
+  padding:30px 18px;
   text-align:center;
-}
-
-.confetti{
-  font-size:40px;
-  letter-spacing:7px;
-  animation:bounce 1s infinite;
+  box-shadow:0 10px 30px #00000012;
 }
 
 .trophy{
-  font-size:90px;
+  font-size:75px;
   animation:bounce 1.5s infinite;
+}
+
+.final h2{
+  margin:10px 0;
+  font-size:27px;
+}
+
+.badge{
+  display:inline-block;
+  background:#fef3c7;
+  padding:12px 18px;
+  border-radius:18px;
+  margin:15px 0;
+  font-weight:bold;
 }
 
 .footer{
   text-align:center;
+  margin:20px 0 5px;
   color:#64748b;
-  font-weight:700;
-  padding:20px 5px;
-}
-
-@media(max-width:480px){
-  .choices{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .choice{
-    font-size:18px;
-  }
-
-  .hero{
-    padding:25px 12px;
-  }
+  font-size:13px;
 }
 </style>
 </head>
@@ -433,74 +404,113 @@ button{
 
 <div class="app">
 
-<header class="topbar">
-  <div class="logo">🔎 مُحَرِّك اللغة 001</div>
-  <div class="case-number">CASE 003</div>
-</header>
+  <div class="topbar">
+    <div class="logo">🔎 مُحَرِّك اللغة 001</div>
+    <div class="case">CASE 003</div>
+  </div>
 
-<!-- START -->
-<section id="hero" class="hero">
+  <section class="hero" id="hero">
 
-  <div class="float f1">⭐</div>
-  <div class="float f2">🧩</div>
-  <div class="float f3">✨</div>
-  <div class="float f4">🔍</div>
+    <div class="floating f1">⭐</div>
+    <div class="floating f2">🧩</div>
+    <div class="floating f3">✨</div>
+    <div class="floating f4">🔍</div>
 
-  <span class="detective">🕵️‍♀️</span>
+    <div class="detective">🕵️‍♀️</div>
 
-  <h1>
-    سرّ <span>الكلمات المبعثرة</span>
-  </h1>
+    <h1>سرّ الكلمات المبعثرة</h1>
 
-  <p>
-    🚨 حدث خلل غامض في <b>مدينة اللغة</b>!
-    الكلمات تفرّقت، والحروف اختلطت،
-    وهناك خمس مهمات تنتظرك.
-    <br>
-    هل تستطيع أن تعيد النظام؟
-  </p>
+    <p>
+      هناك خلل غامض في مدينة اللغة...
+      الكلمات تفرّقت، والحروف اختفت،
+      والجمل تحتاج إلى محقق ذكي! 🔎
+    </p>
 
-  <button class="start-btn" onclick="startGame()">
-    ابدأ التحقيق 🔎
-  </button>
+    <button class="start" onclick="startGame()">
+      🚀 ابدأ التحقيق
+    </button>
 
-</section>
+  </section>
 
-<!-- GAME -->
-<section id="game" class="hidden">
+  <div class="game" id="game">
 
-  <div class="stats">
+    <div class="stats">
+      <div class="stat">
+        <strong id="score">0</strong>
+        <span>النقاط ⭐</span>
+      </div>
 
-    <div class="stat">
-      <small>النقاط</small>
-      <span id="score">0</span> ⭐
+      <div class="stat">
+        <strong id="missionNumber">1</strong>
+        <span>المهمة 🎯</span>
+      </div>
+
+      <div class="stat">
+        <strong id="clues">0</strong>
+        <span>الأدلة 🔎</span>
+      </div>
     </div>
 
-    <div class="stat">
-      <small>المهمة</small>
-      <span id="missionNo">1 / 5</span> 🎯
+    <div class="progress-box">
+      <div class="progress">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
     </div>
 
-    <div class="stat">
-      <small>الأدلة</small>
-      <span id="clues">0</span> 🔍
+    <div class="mission-menu" id="missionMenu"></div>
+
+    <div class="card" id="missionCard">
+
+      <div class="mission-title" id="missionTitle"></div>
+
+      <div class="description" id="description"></div>
+
+      <div class="timer" id="timer">30</div>
+
+      <div id="missionContent"></div>
+
+      <div class="feedback" id="feedback"></div>
+
+      <button class="retry" id="retry" onclick="retryMission()">
+        🔄 حاول مرة أخرى
+      </button>
+
+      <button class="next" id="next" onclick="nextMission()">
+        المهمة التالية ➡️
+      </button>
+
     </div>
 
   </div>
 
-  <div class="progress">
-    <div id="progressBar" class="progress-bar"></div>
+  <div class="final" id="final">
+
+    <div class="trophy">🏆</div>
+
+    <h2>تم حل CASE 003 بنجاح! 🎉</h2>
+
+    <p>
+      أحسنت أيها المحقق!
+      لقد نجحت في فكّ الكلمات واكتشاف الحروف
+      وحلّ الألغاز. 🔎
+    </p>
+
+    <div class="badge">
+      🏅 محقق الكلمات المبعثرة
+    </div>
+
+    <p>
+      لكن لحظة... 👀<br>
+      النظام اكتشف ملفًا جديدًا...
+    </p>
+
+    <h2>CASE 004 // ??? 🔐</h2>
+
   </div>
 
-  <div id="missionMenu" class="mission-menu"></div>
-
-  <div id="missionContainer"></div>
-
-</section>
-
-<div class="footer">
-  إعداد: الأستاذة شهد سعد عودة 💙
-</div>
+  <div class="footer">
+    إعداد: الأستاذة شهد سعد عودة 💙
+  </div>
 
 </div>
 
@@ -511,14 +521,14 @@ const missions = [
   {
     title:"المهمة 01 — فكّ الكلمة 🔤",
     type:"letters",
-    letters:["ر","م","ق"],
-    word:"قمر",
+    letters:["م","ج","ن"],
+    word:"نجم",
     description:"الحروف تفرّقت! اضغط عليها بالترتيب الصحيح لتكوّن كلمة."
   },
 
   {
     title:"المهمة 02 — الصورة والكلمة 🖼️",
-    type:"picture",
+    type:"lettersImage",
     emoji:"🦋",
     letters:["ة","ش","ر","ا","ف"],
     word:"فراشة",
@@ -537,7 +547,7 @@ const missions = [
 
   {
     title:"المهمة 04 — الكلمة المشبوهة 🚨",
-    type:"odd",
+    type:"choice",
     emoji:"🏫",
     correct:"مدرسة",
     choices:["مدرسة","مدرصة","مدرشه"],
@@ -546,7 +556,7 @@ const missions = [
 
   {
     title:"المهمة 05 — بوابة الجملة 🚪",
-    type:"sentence",
+    type:"choice",
     correct:"الطفل",
     choices:["الطفل","المطر","الكرسي"],
     description:"اختر الكلمة التي تجعل الجملة صحيحة."
@@ -554,342 +564,422 @@ const missions = [
 
 ];
 
-let currentMission=0;
-let score=0;
-let clues=0;
-let timer=null;
-let timeLeft=30;
-let locked=false;
-let selectedLetters=[];
-
-
-/* START */
+let currentMission = 0;
+let score = 0;
+let clues = 0;
+let timerInterval;
+let timeLeft = 30;
+let selectedLetters = [];
 
 function startGame(){
 
-  document.getElementById("hero").classList.add("hidden");
-  document.getElementById("game").classList.remove("hidden");
+  document.getElementById("hero").style.display="none";
+  document.getElementById("game").style.display="block";
 
+  buildMissionMenu();
   loadMission(0);
 }
 
-
-/* MENU */
-
-function renderMenu(){
+function buildMissionMenu(){
 
   const menu=document.getElementById("missionMenu");
 
-  menu.innerHTML=missions.map((m,index)=>`
+  menu.innerHTML="";
 
-    <button
-      class="mission-pill ${index===currentMission?"active":""}"
-      onclick="loadMission(${index})">
+  missions.forEach((m,index)=>{
 
-      مهمة ${String(index+1).padStart(2,"0")}
+    const btn=document.createElement("button");
 
-    </button>
+    btn.className="mission-btn";
 
-  `).join("");
+    btn.textContent="م"+(index+1);
+
+    btn.onclick=()=>{
+
+      if(index<=currentMission){
+        loadMission(index);
+      }
+
+    };
+
+    menu.appendChild(btn);
+
+  });
 
 }
 
+function updateMenu(){
 
-/* LOAD */
+  document.querySelectorAll(".mission-btn")
+  .forEach((btn,index)=>{
+
+    btn.classList.toggle(
+      "active",
+      index===currentMission
+    );
+
+  });
+
+}
 
 function loadMission(index){
 
-  clearInterval(timer);
+  clearInterval(timerInterval);
 
   currentMission=index;
-  locked=false;
   selectedLetters=[];
 
-  document.getElementById("missionNo").textContent=
-    `${index+1} / ${missions.length}`;
+  document.getElementById("missionNumber").textContent=index+1;
+
+  document.getElementById("missionTitle").textContent=
+    missions[index].title;
+
+  document.getElementById("description").textContent=
+    missions[index].description;
+
+  document.getElementById("feedback").textContent="";
+  document.getElementById("retry").style.display="none";
+  document.getElementById("next").style.display="none";
+
+  const progress=((index)/missions.length)*100;
 
   document.getElementById("progressBar").style.width=
-    `${(index/missions.length)*100}%`;
+    progress+"%";
 
-  renderMenu();
+  updateMenu();
 
-  const m=missions[index];
-
-  let content="";
-
-
-  /* LETTERS */
-
-  if(m.type==="letters"){
-
-    const shuffled=[...m.letters].sort(()=>Math.random()-.5);
-
-    content=`
-
-      <div class="letters">
-
-        ${shuffled.map(letter=>`
-
-          <button
-            class="letter"
-            onclick="chooseLetter(this,'${letter}')">
-
-            ${letter}
-
-          </button>
-
-        `).join("")}
-
-      </div>
-
-      <div id="wordResult" class="word-result">
-        الكلمة: —
-      </div>
-
-      <button class="start-btn"
-        onclick="checkLetters()">
-
-        تحقّق 🔐
-
-      </button>
-
-    `;
-
-  }
-
-
-  /* PICTURE */
-
-  else if(m.type==="picture"){
-
-    const shuffled=[...m.letters].sort(()=>Math.random()-.5);
-
-    content=`
-
-      <div class="visual">
-        <div class="big-emoji">${m.emoji}</div>
-      </div>
-
-      <div class="letters">
-
-        ${shuffled.map(letter=>`
-
-          <button
-            class="letter"
-            onclick="chooseLetter(this,'${letter}')">
-
-            ${letter}
-
-          </button>
-
-        `).join("")}
-
-      </div>
-
-      <div id="wordResult" class="word-result">
-        الكلمة: —
-      </div>
-
-      <button class="start-btn"
-        onclick="checkLetters()">
-
-        تحقّق 🔐
-
-      </button>
-
-    `;
-
-  }
-
-
-  /* MISSING */
-
-  else if(m.type==="missing"){
-
-    content=`
-
-      <div class="visual">
-        <div class="big-emoji">${m.emoji}</div>
-      </div>
-
-      <div style="font-size:36px;font-weight:900;margin:15px">
-        ${m.shown}
-      </div>
-
-      <div class="choices">
-
-        ${m.choices.map(choice=>`
-
-          <button
-            class="choice"
-            onclick="answerChoice(this,'${choice}','${m.correct}')">
-
-            ${choice}
-
-          </button>
-
-        `).join("")}
-
-      </div>
-
-    `;
-
-  }
-
-
-  /* ODD */
-
-  else if(m.type==="odd"){
-
-    content=`
-
-      <div class="visual">
-        <div class="big-emoji">${m.emoji}</div>
-      </div>
-
-      <div class="choices">
-
-        ${m.choices.map(choice=>`
-
-          <button
-            class="choice"
-            onclick="answerChoice(this,'${choice}','${m.correct}')">
-
-            ${choice}
-
-          </button>
-
-        `).join("")}
-
-      </div>
-
-    `;
-
-  }
-
-
-  /* SENTENCE */
-
-  else if(m.type==="sentence"){
-
-    content=`
-
-      <div class="visual">
-        <div class="big-emoji">🚪</div>
-      </div>
-
-      <div style="
-        font-size:25px;
-        font-weight:900;
-        line-height:2;
-        margin:15px;
-      ">
-
-        شربَ ____ اللبنَ. 🥛
-
-      </div>
-
-      <div class="choices">
-
-        ${m.choices.map((choice,index)=>{
-
-          const icons=["👦🏻","🌧️","🪑"];
-
-          return `
-
-            <button
-              class="choice"
-              onclick="answerChoice(this,'${choice}','${m.correct}')">
-
-              ${icons[index]} ${choice}
-
-            </button>
-
-          `;
-
-        }).join("")}
-
-      </div>
-
-    `;
-
-  }
-
-
-  document.getElementById("missionContainer").innerHTML=`
-
-    <article class="card">
-
-      <span class="file-tag">
-        📁 الملف نشط
-      </span>
-
-      <h2>${m.title}</h2>
-
-      <p class="description">
-        ${m.description}
-      </p>
-
-      <div class="timer">
-
-        <div id="timerNumber" class="timer-number">
-          30
-        </div>
-
-        <div class="timer-line">
-          <div id="timerBar" class="timer-bar"></div>
-        </div>
-
-      </div>
-
-      ${content}
-
-      <div id="feedback" class="feedback"></div>
-
-      <div id="actions"></div>
-
-    </article>
-
-  `;
+  renderMission(missions[index]);
 
   startTimer();
 
 }
 
+function renderMission(mission){
 
-/* TIMER */
+  const content=document.getElementById("missionContent");
+
+  content.innerHTML="";
+
+  if(mission.type==="letters"){
+
+    const answer=document.createElement("div");
+
+    answer.className="answer";
+
+    answer.id="answer";
+
+    answer.textContent="؟";
+
+    content.appendChild(answer);
+
+    const letters=document.createElement("div");
+
+    letters.className="letters";
+
+    mission.letters.forEach(letter=>{
+
+      const btn=document.createElement("button");
+
+      btn.className="letter";
+
+      btn.textContent=letter;
+
+      btn.onclick=()=>selectLetter(btn,letter,mission.word);
+
+      letters.appendChild(btn);
+
+    });
+
+    content.appendChild(letters);
+
+  }
+
+  else if(mission.type==="lettersImage"){
+
+    const image=document.createElement("div");
+
+    image.className="image-box";
+
+    image.textContent=mission.emoji;
+
+    content.appendChild(image);
+
+    const answer=document.createElement("div");
+
+    answer.className="answer";
+
+    answer.id="answer";
+
+    answer.textContent="؟";
+
+    content.appendChild(answer);
+
+    const letters=document.createElement("div");
+
+    letters.className="letters";
+
+    mission.letters.forEach(letter=>{
+
+      const btn=document.createElement("button");
+
+      btn.className="letter";
+
+      btn.textContent=letter;
+
+      btn.onclick=()=>selectLetter(btn,letter,mission.word);
+
+      letters.appendChild(btn);
+
+    });
+
+    content.appendChild(letters);
+
+  }
+
+  else if(mission.type==="missing"){
+
+    const image=document.createElement("div");
+
+    image.className="image-box";
+
+    image.textContent=mission.emoji;
+
+    content.appendChild(image);
+
+    const word=document.createElement("div");
+
+    word.className="answer";
+
+    word.textContent=mission.shown;
+
+    content.appendChild(word);
+
+    const choices=document.createElement("div");
+
+    choices.className="choices";
+
+    mission.choices.forEach(choice=>{
+
+      const btn=document.createElement("button");
+
+      btn.className="choice";
+
+      btn.textContent=choice;
+
+      btn.onclick=()=>checkChoice(btn,choice,mission.correct);
+
+      choices.appendChild(btn);
+
+    });
+
+    content.appendChild(choices);
+
+  }
+
+  else if(mission.type==="choice"){
+
+    if(currentMission===4){
+
+      const sentence=document.createElement("div");
+
+      sentence.style.fontSize="25px";
+      sentence.style.fontWeight="bold";
+      sentence.style.lineHeight="2";
+
+      sentence.innerHTML=
+        "شربَ ____ اللبنَ. 🥛";
+
+      content.appendChild(sentence);
+
+    }else{
+
+      const image=document.createElement("div");
+
+      image.className="image-box";
+
+      image.textContent=mission.emoji;
+
+      content.appendChild(image);
+
+    }
+
+    const choices=document.createElement("div");
+
+    choices.className="choices";
+
+    mission.choices.forEach(choice=>{
+
+      const btn=document.createElement("button");
+
+      btn.className="choice";
+
+      btn.textContent=choice;
+
+      btn.onclick=()=>checkChoice(btn,choice,mission.correct);
+
+      choices.appendChild(btn);
+
+    });
+
+    content.appendChild(choices);
+
+  }
+
+}
+
+function selectLetter(btn,letter,correctWord){
+
+  if(btn.classList.contains("selected")) return;
+
+  btn.classList.add("selected");
+
+  selectedLetters.push(letter);
+
+  document.getElementById("answer").textContent=
+    selectedLetters.join("");
+
+  if(selectedLetters.length===correctWord.length){
+
+    const result=selectedLetters.join("");
+
+    if(result===correctWord){
+
+      correctAnswer();
+
+    }else{
+
+      wrongAnswer();
+
+    }
+
+  }
+
+}
+
+function checkChoice(btn,choice,correct){
+
+  if(choice===correct){
+
+    btn.classList.add("correct");
+
+    correctAnswer();
+
+  }else{
+
+    btn.classList.add("wrong");
+
+    wrongAnswer();
+
+  }
+
+}
+
+function correctAnswer(){
+
+  clearInterval(timerInterval);
+
+  score+=10;
+  clues+=1;
+
+  document.getElementById("score").textContent=score;
+  document.getElementById("clues").textContent=clues;
+
+  document.getElementById("feedback").textContent=
+    "🎉 إجابة صحيحة! أحسنت يا محقق اللغة!";
+
+  document.getElementById("feedback").style.color="#16a34a";
+
+  document.querySelectorAll(".letter,.choice")
+  .forEach(btn=>btn.disabled=true);
+
+  if(currentMission===missions.length-1){
+
+    setTimeout(showFinal,700);
+
+  }else{
+
+    document.getElementById("next").style.display="block";
+
+  }
+
+}
+
+function wrongAnswer(){
+
+  document.getElementById("feedback").textContent=
+    "❌ ليست الإجابة الصحيحة... ركّز وحاول مرة أخرى!";
+
+  document.getElementById("feedback").style.color="#dc2626";
+
+  document.getElementById("retry").style.display="block";
+
+}
+
+function retryMission(){
+
+  clearInterval(timerInterval);
+
+  selectedLetters=[];
+
+  document.getElementById("feedback").textContent="";
+
+  document.getElementById("retry").style.display="none";
+
+  document.getElementById("next").style.display="none";
+
+  renderMission(missions[currentMission]);
+
+  startTimer();
+
+}
+
+function nextMission(){
+
+  loadMission(currentMission+1);
+
+}
 
 function startTimer(){
 
   timeLeft=30;
 
-  updateTimer();
+  const timer=document.getElementById("timer");
 
-  timer=setInterval(()=>{
+  timer.textContent=timeLeft;
+
+  timer.className="timer";
+
+  clearInterval(timerInterval);
+
+  timerInterval=setInterval(()=>{
 
     timeLeft--;
 
-    updateTimer();
+    timer.textContent=timeLeft;
+
+    if(timeLeft<=15){
+
+      timer.classList.add("warning");
+
+    }
+
+    if(timeLeft<=9){
+
+      timer.classList.remove("warning");
+      timer.classList.add("danger");
+
+    }
 
     if(timeLeft<=0){
 
-      clearInterval(timer);
-
-      locked=true;
+      clearInterval(timerInterval);
 
       document.getElementById("feedback").textContent=
-        "⏰ انتهى الوقت! لا مشكلة… حاول مرة أخرى.";
+        "⏰ انتهى الوقت! خُد نفسًا وحاول مرة أخرى.";
 
-      document.getElementById("actions").innerHTML=`
+      document.getElementById("feedback").style.color="#dc2626";
 
-        <button class="retry-btn"
-          onclick="retryMission()">
-
-          🔄 إعادة المحاولة
-
-        </button>
-
-      `;
+      document.getElementById("retry").style.display="block";
 
     }
 
@@ -897,273 +987,10 @@ function startTimer(){
 
 }
 
+function showFinal(){
 
-function updateTimer(){
-
-  const number=document.getElementById("timerNumber");
-  const bar=document.getElementById("timerBar");
-
-  if(!number || !bar)return;
-
-  number.textContent=timeLeft;
-
-  bar.style.width=(timeLeft/30*100)+"%";
-
-  number.classList.toggle(
-    "timer-danger",
-    timeLeft<=9
-  );
-
-}
-
-
-/* LETTERS */
-
-function chooseLetter(button,letter){
-
-  if(locked)return;
-
-  button.classList.toggle("selected");
-
-  if(button.classList.contains("selected")){
-
-    selectedLetters.push(letter);
-
-  }else{
-
-    const index=selectedLetters.lastIndexOf(letter);
-
-    if(index>-1){
-      selectedLetters.splice(index,1);
-    }
-
-  }
-
-  document.getElementById("wordResult").textContent=
-    "الكلمة: "+(selectedLetters.join("")||"—");
-
-}
-
-
-function checkLetters(){
-
-  if(locked)return;
-
-  const answer=selectedLetters.join("");
-
-  if(answer===missions[currentMission].word){
-
-    success();
-
-  }else{
-
-    fail();
-
-  }
-
-}
-
-
-/* NORMAL ANSWERS */
-
-function answerChoice(button,answer,correct){
-
-  if(locked)return;
-
-  if(answer===correct){
-
-    button.classList.add("correct");
-
-    success();
-
-  }else{
-
-    button.classList.add("wrong");
-
-    fail();
-
-  }
-
-}
-
-
-/* WRONG */
-
-function fail(){
-
-  const card=document.querySelector(".card");
-
-  card.style.animation="none";
-
-  void card.offsetWidth;
-
-  card.style.animation="shake .4s";
-
-  document.getElementById("feedback").textContent=
-    "❌ ليست هذه الإجابة… جرّب مرة أخرى! أنت تستطيع 💪";
-
-  document.getElementById("actions").innerHTML=`
-
-    <button class="retry-btn"
-      onclick="retryMission()">
-
-      🔄 حاول مرة أخرى
-
-    </button>
-
-  `;
-
-}
-
-
-/* RETRY */
-
-function retryMission(){
-
-  locked=false;
-
-  document.getElementById("feedback").textContent=
-    "💡 ركّز جيدًا… وابحث عن الدليل!";
-
-  document.getElementById("actions").innerHTML="";
-
-  document.querySelectorAll(".choice").forEach(button=>{
-    button.classList.remove("wrong");
-  });
-
-  document.querySelectorAll(".letter").forEach(button=>{
-    button.classList.remove("selected");
-  });
-
-  selectedLetters=[];
-
-  const result=document.getElementById("wordResult");
-
-  if(result){
-    result.textContent="الكلمة: —";
-  }
-
-}
-
-
-/* SUCCESS */
-
-function success(){
-
-  if(locked)return;
-
-  locked=true;
-
-  clearInterval(timer);
-
-  score+=10;
-  clues++;
-
-  document.getElementById("score").textContent=score;
-  document.getElementById("clues").textContent=clues;
-
-  document.getElementById("progressBar").style.width=
-    `${((currentMission+1)/missions.length)*100}%`;
-
-  document.getElementById("feedback").innerHTML=
-    "🎉 أحسنت يا محقق اللغة! تم حل المهمة 🔓";
-
-  if(currentMission<missions.length-1){
-
-    document.getElementById("actions").innerHTML=`
-
-      <button class="next-btn"
-        onclick="loadMission(${currentMission+1})">
-
-        المهمة التالية ➜
-
-      </button>
-
-    `;
-
-  }else{
-
-    document.getElementById("actions").innerHTML=`
-
-      <button class="finish-btn"
-        onclick="finishGame()">
-
-        🏆 افتح الملف الأخير
-
-      </button>
-
-    `;
-
-  }
-
-}
-
-
-/* FINISH */
-
-function finishGame(){
-
-  clearInterval(timer);
-
-  document.getElementById("missionContainer").innerHTML=`
-
-    <article class="card finish-screen">
-
-      <div class="confetti">
-        🎉 ⭐ 🎊 ⭐ 🎉
-      </div>
-
-      <div class="trophy">
-        🏆
-      </div>
-
-      <h2>
-        تم حل CASE 003 بنجاح!
-      </h2>
-
-      <p class="description">
-
-        أحسنت يا محقق اللغة الصغير! 💙
-        <br><br>
-
-        لقد أعدت النظام إلى مدينة اللغة
-        وجمعت <b>${score}</b> نقطة! ⭐
-
-      </p>
-
-      <div style="
-        font-size:23px;
-        font-weight:900;
-        line-height:1.9;
-        margin:18px 0;
-      ">
-
-        🎁 مكافأة التحقيق:
-        <br>
-        ⭐ شارة المحقق الماهر ⭐
-
-      </div>
-
-      <p style="
-        font-size:21px;
-        font-weight:900;
-      ">
-
-        لكن… لحظة! 👀
-        <br>
-        📁 تم اكتشاف ملف جديد…
-
-      </p>
-
-      <div class="file-tag">
-        CASE 004 🔒
-      </div>
-
-    </article>
-
-  `;
-
-  document.getElementById("missionMenu").innerHTML="";
+  document.getElementById("game").style.display="none";
+  document.getElementById("final").style.display="block";
 
 }
 
