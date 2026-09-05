@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#2563eb">
+
 <title>CASE 003 | سرّ الكلمات المبعثرة</title>
 
 <style>
@@ -12,144 +14,309 @@
   padding:0;
 }
 
+:root{
+  --blue:#2563eb;
+  --dark:#172554;
+  --sky:#dbeafe;
+  --pink:#fce7f3;
+  --yellow:#fef3c7;
+  --green:#16a34a;
+  --red:#dc2626;
+  --orange:#f59e0b;
+  --white:#ffffff;
+}
+
 body{
   font-family:Tahoma,Arial,sans-serif;
-  background:linear-gradient(135deg,#eef7ff,#fff7fc);
-  color:#172554;
   min-height:100vh;
+  background:
+    radial-gradient(circle at 10% 10%,#ffffff 0 5%,transparent 6%),
+    radial-gradient(circle at 90% 20%,#ffffff 0 4%,transparent 5%),
+    linear-gradient(135deg,#dbeafe 0%,#fce7f3 48%,#fef3c7 100%);
+  color:var(--dark);
+  overflow-x:hidden;
 }
 
 button{
   font-family:inherit;
-  cursor:pointer;
 }
 
 .app{
-  width:min(100%,650px);
+  width:100%;
+  max-width:720px;
   margin:auto;
-  padding:15px;
+  padding:12px;
 }
 
+/* =========================
+   TOP BAR
+========================= */
+
 .topbar{
-  background:white;
-  border-radius:22px;
-  padding:14px 16px;
+  background:rgba(255,255,255,.94);
+  border:2px solid rgba(255,255,255,.9);
+  border-radius:24px;
+  padding:13px 15px;
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  box-shadow:0 8px 25px #00000012;
-  margin-bottom:15px;
+  justify-content:space-between;
+  gap:10px;
+  box-shadow:0 10px 30px rgba(30,64,175,.12);
+  margin-bottom:12px;
+  position:relative;
+  z-index:5;
 }
 
 .logo{
-  font-weight:bold;
-  color:#1d4ed8;
+  color:var(--blue);
+  font-weight:900;
+  font-size:14px;
 }
 
-.case{
-  background:#eef2ff;
+.case-number{
+  background:#eff6ff;
+  color:#1e40af;
+  border:1px solid #bfdbfe;
   padding:7px 12px;
-  border-radius:20px;
-  font-weight:bold;
+  border-radius:18px;
+  font-weight:900;
+  font-size:13px;
 }
+
+/* =========================
+   HERO
+========================= */
 
 .hero{
-  background:linear-gradient(135deg,#dbeafe,#fce7f3);
-  border-radius:30px;
-  padding:25px 18px;
-  text-align:center;
   position:relative;
   overflow:hidden;
-  box-shadow:0 12px 30px #00000015;
+  min-height:470px;
+  border-radius:34px;
+  background:
+    linear-gradient(145deg,
+      rgba(255,255,255,.92),
+      rgba(219,234,254,.92) 48%,
+      rgba(252,231,243,.92));
+  box-shadow:0 18px 45px rgba(30,64,175,.16);
+  padding:28px 18px;
+  text-align:center;
+  border:2px solid rgba(255,255,255,.8);
 }
 
-.floating{
+.hero::before,
+.hero::after{
+  content:"";
   position:absolute;
-  font-size:25px;
-  animation:float 3s infinite ease-in-out;
+  border-radius:50%;
+  pointer-events:none;
 }
 
-.f1{top:15px;right:20px}
-.f2{top:65px;left:25px;animation-delay:.5s}
-.f3{bottom:20px;right:35px;animation-delay:1s}
-.f4{bottom:45px;left:35px;animation-delay:1.5s}
+.hero::before{
+  width:170px;
+  height:170px;
+  background:#bfdbfe;
+  opacity:.35;
+  top:-80px;
+  right:-60px;
+}
 
-@keyframes float{
-  50%{transform:translateY(-10px) rotate(8deg)}
+.hero::after{
+  width:150px;
+  height:150px;
+  background:#fbcfe8;
+  opacity:.35;
+  bottom:-80px;
+  left:-50px;
+}
+
+.float-item{
+  position:absolute;
+  font-size:28px;
+  animation:floatAround 3s ease-in-out infinite;
+  z-index:2;
+}
+
+.star1{top:18px;right:22px}
+.star2{top:75px;left:24px;animation-delay:.5s}
+.star3{bottom:45px;right:30px;animation-delay:1s}
+.star4{bottom:70px;left:28px;animation-delay:1.5s}
+
+@keyframes floatAround{
+  0%,100%{
+    transform:translateY(0) rotate(0);
+  }
+  50%{
+    transform:translateY(-12px) rotate(8deg);
+  }
+}
+
+.detective-wrap{
+  position:relative;
+  width:120px;
+  height:120px;
+  margin:8px auto 10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.detective-circle{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,#bfdbfe,#fbcfe8);
+  border-radius:50%;
+  box-shadow:0 12px 25px rgba(37,99,235,.15);
+  animation:softPulse 2.5s infinite;
 }
 
 .detective{
-  font-size:65px;
-  animation:bounce 2s infinite;
+  position:relative;
+  font-size:72px;
+  z-index:2;
+  animation:detectiveBounce 2s infinite;
 }
 
-@keyframes bounce{
-  50%{transform:translateY(-6px)}
+@keyframes detectiveBounce{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
 }
 
-h1{
-  font-size:30px;
+@keyframes softPulse{
+  50%{transform:scale(1.05)}
+}
+
+.hero h1{
+  position:relative;
+  z-index:3;
+  font-size:31px;
+  line-height:1.3;
   margin:8px 0;
 }
 
-.hero p{
-  line-height:1.8;
-  font-size:15px;
-  color:#334155;
+.hero .subtitle{
+  display:inline-block;
+  background:#fff;
+  color:#2563eb;
+  padding:7px 14px;
+  border-radius:20px;
+  font-weight:bold;
+  font-size:13px;
+  margin-bottom:12px;
+  box-shadow:0 5px 15px rgba(0,0,0,.07);
 }
 
-.start{
+.hero p{
+  position:relative;
+  z-index:3;
+  color:#475569;
+  line-height:1.9;
+  font-size:15px;
+  max-width:560px;
+  margin:auto;
+}
+
+.start-button{
+  position:relative;
+  z-index:3;
   border:0;
-  background:#2563eb;
+  background:linear-gradient(135deg,#2563eb,#4f46e5);
   color:white;
-  padding:14px 25px;
-  border-radius:18px;
+  padding:15px 27px;
+  border-radius:20px;
   font-size:17px;
-  font-weight:bold;
-  margin-top:18px;
-  box-shadow:0 8px 18px #2563eb44;
+  font-weight:900;
+  margin-top:20px;
+  box-shadow:0 10px 24px rgba(37,99,235,.28);
   transition:.2s;
 }
 
-.start:active{
+.start-button:active{
   transform:scale(.95);
+}
+
+/* =========================
+   DECORATIVE FILE
+========================= */
+
+.file-card{
+  position:relative;
+  z-index:3;
+  width:min(100%,390px);
+  margin:20px auto 0;
+  background:white;
+  border-radius:18px;
+  padding:10px 14px;
+  box-shadow:0 7px 20px rgba(0,0,0,.08);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  font-size:12px;
+  color:#64748b;
+  font-weight:bold;
+}
+
+/* =========================
+   GAME
+========================= */
+
+.game{
+  display:none;
 }
 
 .stats{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  margin:15px 0;
+  gap:9px;
+  margin:12px 0;
 }
 
 .stat{
-  background:white;
-  border-radius:18px;
-  padding:13px 5px;
+  background:rgba(255,255,255,.95);
+  border-radius:19px;
+  padding:11px 4px;
   text-align:center;
-  box-shadow:0 6px 18px #0000000d;
+  box-shadow:0 7px 20px rgba(30,64,175,.09);
+  border:1px solid rgba(255,255,255,.8);
 }
 
 .stat strong{
   display:block;
   font-size:21px;
-  color:#2563eb;
+  color:var(--blue);
+  margin-bottom:3px;
 }
 
 .stat span{
-  font-size:12px;
+  font-size:11px;
   color:#64748b;
+  font-weight:bold;
 }
 
-.progress-box{
-  background:white;
+/* =========================
+   PROGRESS
+========================= */
+
+.progress-card{
+  background:rgba(255,255,255,.95);
+  border-radius:19px;
   padding:12px;
-  border-radius:18px;
-  margin-bottom:15px;
+  margin-bottom:12px;
+  box-shadow:0 7px 20px rgba(30,64,175,.08);
+}
+
+.progress-info{
+  display:flex;
+  justify-content:space-between;
+  font-size:11px;
+  color:#64748b;
+  font-weight:bold;
+  margin-bottom:8px;
 }
 
 .progress{
-  height:10px;
+  width:100%;
+  height:11px;
   background:#e2e8f0;
   border-radius:20px;
   overflow:hidden;
@@ -158,68 +325,161 @@ h1{
 .progress-bar{
   height:100%;
   width:0%;
-  background:#2563eb;
-  transition:.4s;
+  background:linear-gradient(90deg,#2563eb,#7c3aed);
+  border-radius:20px;
+  transition:.5s;
 }
 
-.game{
-  display:none;
-}
+/* =========================
+   MISSION TABS
+========================= */
 
 .mission-menu{
   display:flex;
   gap:7px;
   overflow-x:auto;
-  margin-bottom:15px;
+  padding:2px 1px 7px;
+  scrollbar-width:none;
+}
+
+.mission-menu::-webkit-scrollbar{
+  display:none;
 }
 
 .mission-btn{
-  min-width:65px;
+  flex:0 0 auto;
+  min-width:74px;
   border:0;
-  background:white;
-  padding:10px;
-  border-radius:15px;
-  font-weight:bold;
+  background:rgba(255,255,255,.95);
   color:#64748b;
+  padding:9px 11px;
+  border-radius:16px;
+  font-weight:900;
+  font-size:12px;
+  box-shadow:0 5px 15px rgba(0,0,0,.06);
 }
 
 .mission-btn.active{
-  background:#2563eb;
-  color:white;
+  background:linear-gradient(135deg,#2563eb,#4f46e5);
+  color:#fff;
 }
 
-.card{
-  background:white;
-  border-radius:28px;
-  padding:22px 16px;
-  box-shadow:0 10px 30px #00000012;
+/* =========================
+   MISSION CARD
+========================= */
+
+.mission-card{
+  position:relative;
+  overflow:hidden;
+  background:rgba(255,255,255,.97);
+  border-radius:31px;
+  padding:21px 15px 24px;
+  box-shadow:0 14px 35px rgba(30,64,175,.12);
+  border:2px solid rgba(255,255,255,.9);
   text-align:center;
 }
 
+.mission-card::before{
+  content:"";
+  position:absolute;
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  background:#dbeafe;
+  opacity:.3;
+  top:-65px;
+  right:-50px;
+}
+
+.mission-card::after{
+  content:"";
+  position:absolute;
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  background:#fce7f3;
+  opacity:.3;
+  bottom:-60px;
+  left:-40px;
+}
+
+.mission-inner{
+  position:relative;
+  z-index:2;
+}
+
+.mission-label{
+  display:inline-block;
+  background:#eff6ff;
+  color:#2563eb;
+  border-radius:18px;
+  padding:7px 13px;
+  font-size:12px;
+  font-weight:900;
+  margin-bottom:8px;
+}
+
 .mission-title{
-  font-size:21px;
-  margin-bottom:10px;
+  font-size:22px;
+  font-weight:900;
+  margin-bottom:7px;
 }
 
 .description{
   color:#64748b;
+  font-size:14px;
   line-height:1.8;
-  margin-bottom:18px;
+  margin-bottom:15px;
+}
+
+/* =========================
+   EVIDENCE VISUAL
+========================= */
+
+.evidence-strip{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  margin:5px 0 13px;
+}
+
+.evidence{
+  background:#fff;
+  border:1px solid #e2e8f0;
+  border-radius:13px;
+  padding:6px 9px;
+  font-size:12px;
+  box-shadow:0 4px 10px rgba(0,0,0,.05);
+}
+
+.evidence.locked{
+  opacity:.45;
+}
+
+/* =========================
+   TIMER
+========================= */
+
+.timer-wrap{
+  position:relative;
+  width:82px;
+  height:82px;
+  margin:0 auto 17px;
 }
 
 .timer{
-  width:80px;
-  height:80px;
+  width:82px;
+  height:82px;
   border-radius:50%;
-  background:#eff6ff;
-  border:7px solid #bfdbfe;
   display:flex;
   align-items:center;
   justify-content:center;
-  margin:0 auto 18px;
-  font-size:25px;
-  font-weight:bold;
+  background:#eff6ff;
+  border:7px solid #bfdbfe;
   color:#2563eb;
+  font-size:25px;
+  font-weight:900;
+  box-shadow:0 6px 15px rgba(37,99,235,.1);
 }
 
 .timer.warning{
@@ -232,79 +492,135 @@ h1{
   background:#fef2f2;
   border-color:#fecaca;
   color:#dc2626;
-  animation:pulse .7s infinite;
+  animation:timerPulse .7s infinite;
 }
 
-@keyframes pulse{
+@keyframes timerPulse{
   50%{transform:scale(1.08)}
 }
+
+/* =========================
+   MISSION VISUAL
+========================= */
+
+.visual-box{
+  width:125px;
+  height:125px;
+  margin:5px auto 15px;
+  border-radius:32px;
+  background:linear-gradient(145deg,#eff6ff,#fdf2f8);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:72px;
+  box-shadow:
+    inset 0 0 0 2px rgba(255,255,255,.8),
+    0 10px 25px rgba(37,99,235,.09);
+  animation:visualFloat 3s ease-in-out infinite;
+}
+
+@keyframes visualFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+}
+
+/* =========================
+   ANSWER AREA
+========================= */
+
+.answer-box{
+  min-height:67px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  border:3px dashed #bfdbfe;
+  background:#f8fbff;
+  border-radius:21px;
+  color:#1e3a8a;
+  font-size:29px;
+  font-weight:900;
+  margin:10px auto 16px;
+  max-width:420px;
+  transition:.25s;
+}
+
+.answer-box.success{
+  border-color:#86efac;
+  background:#f0fdf4;
+  color:#15803d;
+  transform:scale(1.02);
+}
+
+.answer-box.error{
+  border-color:#fca5a5;
+  background:#fef2f2;
+  animation:shake .4s;
+}
+
+/* =========================
+   LETTER BUTTONS
+========================= */
 
 .letters{
   display:flex;
   justify-content:center;
-  gap:10px;
+  align-items:center;
+  gap:9px;
   flex-wrap:wrap;
-  margin:20px 0;
+  margin:13px 0;
 }
 
 .letter{
-  width:62px;
-  height:62px;
+  width:61px;
+  height:61px;
   border:0;
   border-radius:20px;
-  background:#dbeafe;
+  background:linear-gradient(145deg,#dbeafe,#eff6ff);
   color:#1e40af;
   font-size:27px;
-  font-weight:bold;
-  box-shadow:0 5px 12px #00000012;
+  font-weight:900;
+  box-shadow:0 7px 15px rgba(37,99,235,.1);
   transition:.2s;
 }
 
 .letter:active{
-  transform:scale(.9);
+  transform:scale(.91);
 }
 
 .letter.selected{
-  background:#2563eb;
-  color:white;
-  transform:translateY(-5px);
+  background:linear-gradient(145deg,#2563eb,#4f46e5);
+  color:#fff;
+  transform:translateY(-5px) rotate(-2deg);
 }
 
-.answer{
-  min-height:65px;
-  border:3px dashed #bfdbfe;
-  border-radius:20px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  font-size:30px;
-  font-weight:bold;
-  color:#1e3a8a;
-  margin:15px 0;
+.letter.correct{
+  background:#dcfce7;
+  color:#166534;
 }
 
-.image-box{
-  font-size:75px;
-  margin:10px 0 18px;
-  animation:float 3s infinite ease-in-out;
-}
+/* =========================
+   CHOICES
+========================= */
 
 .choices{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
-  margin-top:15px;
+  max-width:500px;
+  margin:13px auto 0;
 }
 
 .choice{
-  border:0;
-  background:#f1f5f9;
-  border-radius:18px;
-  padding:15px 10px;
-  font-size:18px;
-  font-weight:bold;
+  border:2px solid transparent;
+  background:#f8fafc;
   color:#334155;
+  border-radius:19px;
+  padding:14px 9px;
+  min-height:58px;
+  font-size:17px;
+  font-weight:900;
+  box-shadow:0 5px 13px rgba(0,0,0,.05);
   transition:.2s;
 }
 
@@ -315,87 +631,258 @@ h1{
 .choice.correct{
   background:#dcfce7;
   color:#166534;
-  animation:correct .5s;
+  border-color:#86efac;
+  animation:correctPop .5s;
 }
 
 .choice.wrong{
   background:#fee2e2;
   color:#991b1b;
+  border-color:#fca5a5;
   animation:shake .4s;
 }
 
-@keyframes correct{
+@keyframes correctPop{
   50%{transform:scale(1.08)}
 }
 
 @keyframes shake{
-  25%{transform:translateX(7px)}
-  50%{transform:translateX(-7px)}
-  75%{transform:translateX(5px)}
+  20%{transform:translateX(7px)}
+  40%{transform:translateX(-7px)}
+  60%{transform:translateX(5px)}
+  80%{transform:translateX(-4px)}
 }
 
+/* =========================
+   SENTENCE
+========================= */
+
+.sentence-box{
+  background:#fffbeb;
+  border:2px solid #fde68a;
+  border-radius:23px;
+  padding:18px 10px;
+  font-size:23px;
+  font-weight:900;
+  line-height:2;
+  margin:10px auto 15px;
+  max-width:520px;
+}
+
+/* =========================
+   FEEDBACK
+========================= */
+
 .feedback{
-  margin-top:15px;
-  font-weight:bold;
-  line-height:1.7;
-  min-height:30px;
+  min-height:38px;
+  margin-top:13px;
+  font-size:14px;
+  font-weight:900;
+  line-height:1.8;
+}
+
+.feedback.success{
+  color:#15803d;
+}
+
+.feedback.error{
+  color:#dc2626;
+}
+
+.feedback.timeout{
+  color:#ea580c;
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.action-button{
+  display:none;
+  border:0;
+  color:#fff;
+  padding:12px 22px;
+  border-radius:17px;
+  font-size:15px;
+  font-weight:900;
+  margin:9px auto 0;
+  box-shadow:0 7px 16px rgba(0,0,0,.1);
 }
 
 .retry{
-  display:none;
-  border:0;
-  background:#f59e0b;
-  color:white;
-  padding:12px 20px;
-  border-radius:16px;
-  font-weight:bold;
-  margin:12px auto 0;
+  background:linear-gradient(135deg,#f59e0b,#ea580c);
 }
 
 .next{
-  display:none;
-  border:0;
-  background:#16a34a;
-  color:white;
-  padding:12px 20px;
-  border-radius:16px;
-  font-weight:bold;
-  margin:12px auto 0;
+  background:linear-gradient(135deg,#16a34a,#15803d);
 }
+
+/* =========================
+   FINAL SCREEN
+========================= */
 
 .final{
   display:none;
-  background:white;
-  border-radius:28px;
-  padding:30px 18px;
+  position:relative;
+  overflow:hidden;
+  background:rgba(255,255,255,.97);
+  border-radius:34px;
+  padding:30px 17px 34px;
   text-align:center;
-  box-shadow:0 10px 30px #00000012;
+  box-shadow:0 18px 45px rgba(30,64,175,.15);
+  border:2px solid #fff;
+}
+
+.final::before,
+.final::after{
+  content:"✨";
+  position:absolute;
+  font-size:35px;
+  animation:floatAround 2.5s infinite;
+}
+
+.final::before{
+  top:20px;
+  right:25px;
+}
+
+.final::after{
+  bottom:25px;
+  left:25px;
+  animation-delay:.7s;
+}
+
+.confetti{
+  font-size:27px;
+  letter-spacing:5px;
+  margin-bottom:8px;
 }
 
 .trophy{
-  font-size:75px;
-  animation:bounce 1.5s infinite;
+  font-size:82px;
+  animation:trophyBounce 1.4s infinite;
+}
+
+@keyframes trophyBounce{
+  0%,100%{transform:translateY(0) rotate(0)}
+  50%{transform:translateY(-10px) rotate(3deg)}
 }
 
 .final h2{
-  margin:10px 0;
   font-size:27px;
+  line-height:1.5;
+  margin:8px 0;
 }
 
-.badge{
-  display:inline-block;
-  background:#fef3c7;
-  padding:12px 18px;
-  border-radius:18px;
+.final p{
+  color:#64748b;
+  line-height:1.9;
+  font-size:14px;
+}
+
+.final-score{
+  display:inline-flex;
+  flex-direction:column;
+  background:#eff6ff;
+  color:#1d4ed8;
+  border-radius:20px;
+  padding:10px 22px;
   margin:15px 0;
+}
+
+.final-score strong{
+  font-size:26px;
+}
+
+.final-score span{
+  font-size:11px;
   font-weight:bold;
 }
 
+.badge{
+  width:min(100%,310px);
+  margin:10px auto 18px;
+  background:linear-gradient(145deg,#fef3c7,#fffbeb);
+  border:2px solid #fde68a;
+  border-radius:24px;
+  padding:16px;
+}
+
+.badge-icon{
+  font-size:42px;
+}
+
+.badge-title{
+  font-weight:900;
+  margin-top:5px;
+}
+
+.next-case{
+  margin-top:20px;
+  background:#172554;
+  color:white;
+  border-radius:23px;
+  padding:18px 12px;
+}
+
+.next-case .lock{
+  font-size:35px;
+}
+
+.next-case strong{
+  display:block;
+  margin:6px 0;
+  font-size:20px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
 .footer{
   text-align:center;
-  margin:20px 0 5px;
   color:#64748b;
-  font-size:13px;
+  font-size:12px;
+  margin:18px 0 4px;
+  font-weight:bold;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:420px){
+
+  .hero{
+    min-height:450px;
+    padding:24px 13px;
+  }
+
+  .hero h1{
+    font-size:27px;
+  }
+
+  .detective{
+    font-size:64px;
+  }
+
+  .mission-title{
+    font-size:20px;
+  }
+
+  .choices{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .choice{
+    font-size:16px;
+  }
+
+  .letter{
+    width:58px;
+    height:58px;
+  }
+
 }
 </style>
 </head>
@@ -404,78 +891,124 @@ h1{
 
 <div class="app">
 
-  <div class="topbar">
-    <div class="logo">🔎 مُحَرِّك اللغة 001</div>
-    <div class="case">CASE 003</div>
+<!-- TOP -->
+<div class="topbar">
+  <div class="logo">🔎 مُحَرِّك اللغة 001</div>
+  <div class="case-number">CASE 003</div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+
+  <div class="float-item star1">⭐</div>
+  <div class="float-item star2">🧩</div>
+  <div class="float-item star3">✨</div>
+  <div class="float-item star4">🔍</div>
+
+  <div class="detective-wrap">
+    <div class="detective-circle"></div>
+    <div class="detective">🕵️‍♀️</div>
   </div>
 
-  <section class="hero" id="hero">
+  <div class="subtitle">📁 ملف القضية الجديد</div>
 
-    <div class="floating f1">⭐</div>
-    <div class="floating f2">🧩</div>
-    <div class="floating f3">✨</div>
-    <div class="floating f4">🔍</div>
+  <h1>سرّ الكلمات المبعثرة</h1>
 
-    <div class="detective">🕵️‍♀️</div>
+  <p>
+    هناك خلل غامض في مدينة اللغة...
+    الحروف تفرّقت، والكلمات اختبأت،
+    وبعض الأدلة اختفت! 🧩
+    هل تستطيع حلّ القضية؟
+  </p>
 
-    <h1>سرّ الكلمات المبعثرة</h1>
+  <button class="start-button" onclick="startGame()">
+    🚀 ابدأ التحقيق
+  </button>
 
-    <p>
-      هناك خلل غامض في مدينة اللغة...
-      الكلمات تفرّقت، والحروف اختفت،
-      والجمل تحتاج إلى محقق ذكي! 🔎
-    </p>
+  <div class="file-card">
+    📂 CASE 003 &nbsp; | &nbsp; الحالة: مفتوحة 🔓
+  </div>
 
-    <button class="start" onclick="startGame()">
-      🚀 ابدأ التحقيق
-    </button>
+</section>
 
-  </section>
+<!-- GAME -->
+<section class="game" id="game">
 
-  <div class="game" id="game">
+  <!-- STATS -->
+  <div class="stats">
 
-    <div class="stats">
-      <div class="stat">
-        <strong id="score">0</strong>
-        <span>النقاط ⭐</span>
-      </div>
-
-      <div class="stat">
-        <strong id="missionNumber">1</strong>
-        <span>المهمة 🎯</span>
-      </div>
-
-      <div class="stat">
-        <strong id="clues">0</strong>
-        <span>الأدلة 🔎</span>
-      </div>
+    <div class="stat">
+      <strong id="score">0</strong>
+      <span>النقاط ⭐</span>
     </div>
 
-    <div class="progress-box">
-      <div class="progress">
-        <div class="progress-bar" id="progressBar"></div>
-      </div>
+    <div class="stat">
+      <strong id="missionNumber">1</strong>
+      <span>المهمة 🎯</span>
     </div>
 
-    <div class="mission-menu" id="missionMenu"></div>
+    <div class="stat">
+      <strong id="clues">0</strong>
+      <span>الأدلة 🔎</span>
+    </div>
 
-    <div class="card" id="missionCard">
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-card">
+
+    <div class="progress-info">
+      <span>تقدّم التحقيق</span>
+      <span id="progressText">0 / 5</span>
+    </div>
+
+    <div class="progress">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+  </div>
+
+  <!-- MISSIONS -->
+  <div class="mission-menu" id="missionMenu"></div>
+
+  <!-- MISSION CARD -->
+  <div class="mission-card">
+
+    <div class="mission-inner">
+
+      <div class="mission-label">
+        🔎 دليل القضية
+      </div>
 
       <div class="mission-title" id="missionTitle"></div>
 
       <div class="description" id="description"></div>
 
-      <div class="timer" id="timer">30</div>
+      <div class="evidence-strip">
+        <div class="evidence">📁 ملف</div>
+        <div class="evidence">🧩 لغز</div>
+        <div class="evidence locked" id="evidenceStatus">🔒 لم يُحل</div>
+      </div>
+
+      <div class="timer-wrap">
+        <div class="timer" id="timer">30</div>
+      </div>
 
       <div id="missionContent"></div>
 
       <div class="feedback" id="feedback"></div>
 
-      <button class="retry" id="retry" onclick="retryMission()">
+      <button
+        class="action-button retry"
+        id="retry"
+        onclick="retryMission()">
         🔄 حاول مرة أخرى
       </button>
 
-      <button class="next" id="next" onclick="nextMission()">
+      <button
+        class="action-button next"
+        id="next"
+        onclick="nextMission()">
         المهمة التالية ➡️
       </button>
 
@@ -483,48 +1016,84 @@ h1{
 
   </div>
 
-  <div class="final" id="final">
+</section>
 
-    <div class="trophy">🏆</div>
+<!-- FINAL -->
+<section class="final" id="final">
 
-    <h2>تم حل CASE 003 بنجاح! 🎉</h2>
+  <div class="confetti">
+    🎉 ✨ ⭐ ✨ 🎉
+  </div>
 
-    <p>
-      أحسنت أيها المحقق!
-      لقد نجحت في فكّ الكلمات واكتشاف الحروف
-      وحلّ الألغاز. 🔎
-    </p>
+  <div class="trophy">🏆</div>
 
-    <div class="badge">
-      🏅 محقق الكلمات المبعثرة
+  <h2>تم حل CASE 003 بنجاح!</h2>
+
+  <p>
+    أحسنت يا محقق اللغة! 🕵️‍♀️<br>
+    استطعت فكّ الكلمات، واكتشاف الحروف،
+    وحلّ الأدلة والوصول إلى نهاية القضية.
+  </p>
+
+  <div class="final-score">
+    <strong id="finalScore">50</strong>
+    <span>نقطة تحقيق ⭐</span>
+  </div>
+
+  <div class="badge">
+    <div class="badge-icon">🏅</div>
+    <div class="badge-title">
+      محقق الكلمات المبعثرة
     </div>
-
-    <p>
-      لكن لحظة... 👀<br>
-      النظام اكتشف ملفًا جديدًا...
-    </p>
-
-    <h2>CASE 004 // ??? 🔐</h2>
-
   </div>
 
-  <div class="footer">
-    إعداد: الأستاذة شهد سعد عودة 💙
+  <p>
+    لكن... لحظة واحدة! 👀<br>
+    يبدو أن النظام اكتشف ملفًا جديدًا...
+  </p>
+
+  <div class="next-case">
+    <div class="lock">🔐</div>
+    <strong>CASE 004</strong>
+    <span>الملف التالي مغلق حاليًا...</span>
   </div>
+
+  <div class="confetti" style="margin-top:20px;">
+    🧩 🔍 ⭐ 📁 ✨
+  </div>
+
+</section>
+
+<div class="footer">
+  إعداد: الأستاذة شهد سعد عودة 💙
+</div>
 
 </div>
 
 <script>
 
+/* =====================================================
+   CASE 003 DATA
+===================================================== */
+
 const missions = [
+
+  /* -----------------------------------------------
+     MISSION 01
+     التعديل الوحيد: نجم بدل قمر
+  ------------------------------------------------ */
 
   {
     title:"المهمة 01 — فكّ الكلمة 🔤",
     type:"letters",
-    letters:["م","ج","ن"],
+    letters:["م","ن","ج"],
     word:"نجم",
     description:"الحروف تفرّقت! اضغط عليها بالترتيب الصحيح لتكوّن كلمة."
   },
+
+  /* -----------------------------------------------
+     MISSION 02
+  ------------------------------------------------ */
 
   {
     title:"المهمة 02 — الصورة والكلمة 🖼️",
@@ -534,6 +1103,10 @@ const missions = [
     word:"فراشة",
     description:"انظر إلى الصورة، ثم رتّب الحروف لتكتب اسمها."
   },
+
+  /* -----------------------------------------------
+     MISSION 03
+  ------------------------------------------------ */
 
   {
     title:"المهمة 03 — الحرف المفقود 🔎",
@@ -545,6 +1118,10 @@ const missions = [
     description:"هناك حرف اختفى من الكلمة! اكتشفه."
   },
 
+  /* -----------------------------------------------
+     MISSION 04
+  ------------------------------------------------ */
+
   {
     title:"المهمة 04 — الكلمة المشبوهة 🚨",
     type:"choice",
@@ -553,6 +1130,10 @@ const missions = [
     choices:["مدرسة","مدرصة","مدرشه"],
     description:"هناك كلمة واحدة مكتوبة بطريقة صحيحة… اكتشفها!"
   },
+
+  /* -----------------------------------------------
+     MISSION 05
+  ------------------------------------------------ */
 
   {
     title:"المهمة 05 — بوابة الجملة 🚪",
@@ -564,289 +1145,400 @@ const missions = [
 
 ];
 
+/* =====================================================
+   GAME VARIABLES
+===================================================== */
+
 let currentMission = 0;
 let score = 0;
 let clues = 0;
-let timerInterval;
-let timeLeft = 30;
 let selectedLetters = [];
+let timerInterval = null;
+let timeLeft = 30;
+let gameStarted = false;
+
+/* =====================================================
+   START GAME
+===================================================== */
 
 function startGame(){
 
-  document.getElementById("hero").style.display="none";
-  document.getElementById("game").style.display="block";
+  gameStarted = true;
+
+  document.getElementById("hero").style.display = "none";
+  document.getElementById("game").style.display = "block";
+  document.getElementById("final").style.display = "none";
+
+  score = 0;
+  clues = 0;
+  currentMission = 0;
+
+  document.getElementById("score").textContent = "0";
+  document.getElementById("clues").textContent = "0";
 
   buildMissionMenu();
   loadMission(0);
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 }
+
+/* =====================================================
+   BUILD MISSION MENU
+===================================================== */
 
 function buildMissionMenu(){
 
-  const menu=document.getElementById("missionMenu");
+  const menu = document.getElementById("missionMenu");
 
-  menu.innerHTML="";
+  menu.innerHTML = "";
 
-  missions.forEach((m,index)=>{
+  missions.forEach((mission,index)=>{
 
-    const btn=document.createElement("button");
+    const button = document.createElement("button");
 
-    btn.className="mission-btn";
+    button.className = "mission-btn";
 
-    btn.textContent="م"+(index+1);
+    button.textContent = "مهمة " + (index + 1);
 
-    btn.onclick=()=>{
+    button.onclick = function(){
 
-      if(index<=currentMission){
+      /*
+        يسمح فقط بالعودة للمهمة الحالية
+        أو المهام التي تم فتحها.
+      */
+
+      if(index <= currentMission){
         loadMission(index);
       }
 
     };
 
-    menu.appendChild(btn);
+    menu.appendChild(button);
 
   });
 
 }
 
-function updateMenu(){
+/* =====================================================
+   UPDATE MISSION MENU
+===================================================== */
 
-  document.querySelectorAll(".mission-btn")
-  .forEach((btn,index)=>{
+function updateMissionMenu(){
 
-    btn.classList.toggle(
-      "active",
-      index===currentMission
-    );
+  document
+    .querySelectorAll(".mission-btn")
+    .forEach((button,index)=>{
 
-  });
+      button.classList.toggle(
+        "active",
+        index === currentMission
+      );
+
+    });
 
 }
+
+/* =====================================================
+   LOAD MISSION
+===================================================== */
 
 function loadMission(index){
 
   clearInterval(timerInterval);
 
-  currentMission=index;
-  selectedLetters=[];
+  currentMission = index;
+  selectedLetters = [];
 
-  document.getElementById("missionNumber").textContent=index+1;
+  document.getElementById("missionNumber").textContent =
+    index + 1;
 
-  document.getElementById("missionTitle").textContent=
+  document.getElementById("progressText").textContent =
+    index + " / " + missions.length;
+
+  document.getElementById("progressBar").style.width =
+    ((index) / missions.length * 100) + "%";
+
+  document.getElementById("missionTitle").textContent =
     missions[index].title;
 
-  document.getElementById("description").textContent=
+  document.getElementById("description").textContent =
     missions[index].description;
 
-  document.getElementById("feedback").textContent="";
-  document.getElementById("retry").style.display="none";
-  document.getElementById("next").style.display="none";
+  document.getElementById("feedback").textContent = "";
+  document.getElementById("feedback").className = "feedback";
 
-  const progress=((index)/missions.length)*100;
+  document.getElementById("retry").style.display = "none";
+  document.getElementById("next").style.display = "none";
 
-  document.getElementById("progressBar").style.width=
-    progress+"%";
+  document.getElementById("evidenceStatus").textContent =
+    "🔒 لم يُحل";
 
-  updateMenu();
+  updateMissionMenu();
 
   renderMission(missions[index]);
 
   startTimer();
 
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 }
+
+/* =====================================================
+   RENDER MISSION
+===================================================== */
 
 function renderMission(mission){
 
-  const content=document.getElementById("missionContent");
+  const content =
+    document.getElementById("missionContent");
 
-  content.innerHTML="";
+  content.innerHTML = "";
 
-  if(mission.type==="letters"){
+  /* -----------------------------------------------
+     LETTER MISSION
+  ------------------------------------------------ */
 
-    const answer=document.createElement("div");
+  if(mission.type === "letters"){
 
-    answer.className="answer";
+    const visual = document.createElement("div");
 
-    answer.id="answer";
+    visual.className = "visual-box";
+    visual.textContent = "🧩";
 
-    answer.textContent="؟";
+    content.appendChild(visual);
 
-    content.appendChild(answer);
+    const answer = document.createElement("div");
 
-    const letters=document.createElement("div");
-
-    letters.className="letters";
-
-    mission.letters.forEach(letter=>{
-
-      const btn=document.createElement("button");
-
-      btn.className="letter";
-
-      btn.textContent=letter;
-
-      btn.onclick=()=>selectLetter(btn,letter,mission.word);
-
-      letters.appendChild(btn);
-
-    });
-
-    content.appendChild(letters);
-
-  }
-
-  else if(mission.type==="lettersImage"){
-
-    const image=document.createElement("div");
-
-    image.className="image-box";
-
-    image.textContent=mission.emoji;
-
-    content.appendChild(image);
-
-    const answer=document.createElement("div");
-
-    answer.className="answer";
-
-    answer.id="answer";
-
-    answer.textContent="؟";
+    answer.className = "answer-box";
+    answer.id = "answer";
+    answer.textContent = "؟";
 
     content.appendChild(answer);
 
-    const letters=document.createElement("div");
-
-    letters.className="letters";
-
-    mission.letters.forEach(letter=>{
-
-      const btn=document.createElement("button");
-
-      btn.className="letter";
-
-      btn.textContent=letter;
-
-      btn.onclick=()=>selectLetter(btn,letter,mission.word);
-
-      letters.appendChild(btn);
-
-    });
-
-    content.appendChild(letters);
+    createLetterButtons(
+      content,
+      mission
+    );
 
   }
 
-  else if(mission.type==="missing"){
+  /* -----------------------------------------------
+     IMAGE + LETTERS
+  ------------------------------------------------ */
 
-    const image=document.createElement("div");
+  else if(mission.type === "lettersImage"){
 
-    image.className="image-box";
+    const visual = document.createElement("div");
 
-    image.textContent=mission.emoji;
+    visual.className = "visual-box";
+    visual.textContent = mission.emoji;
 
-    content.appendChild(image);
+    content.appendChild(visual);
 
-    const word=document.createElement("div");
+    const answer = document.createElement("div");
 
-    word.className="answer";
+    answer.className = "answer-box";
+    answer.id = "answer";
+    answer.textContent = "؟";
 
-    word.textContent=mission.shown;
+    content.appendChild(answer);
+
+    createLetterButtons(
+      content,
+      mission
+    );
+
+  }
+
+  /* -----------------------------------------------
+     MISSING LETTER
+  ------------------------------------------------ */
+
+  else if(mission.type === "missing"){
+
+    const visual = document.createElement("div");
+
+    visual.className = "visual-box";
+    visual.textContent = mission.emoji;
+
+    content.appendChild(visual);
+
+    const word = document.createElement("div");
+
+    word.className = "answer-box";
+    word.textContent = mission.shown;
 
     content.appendChild(word);
 
-    const choices=document.createElement("div");
-
-    choices.className="choices";
-
-    mission.choices.forEach(choice=>{
-
-      const btn=document.createElement("button");
-
-      btn.className="choice";
-
-      btn.textContent=choice;
-
-      btn.onclick=()=>checkChoice(btn,choice,mission.correct);
-
-      choices.appendChild(btn);
-
-    });
-
-    content.appendChild(choices);
+    createChoiceButtons(
+      content,
+      mission
+    );
 
   }
 
-  else if(mission.type==="choice"){
+  /* -----------------------------------------------
+     CHOICE
+  ------------------------------------------------ */
 
-    if(currentMission===4){
+  else if(mission.type === "choice"){
 
-      const sentence=document.createElement("div");
+    if(currentMission === 4){
 
-      sentence.style.fontSize="25px";
-      sentence.style.fontWeight="bold";
-      sentence.style.lineHeight="2";
+      const sentence = document.createElement("div");
 
-      sentence.innerHTML=
+      sentence.className = "sentence-box";
+
+      sentence.textContent =
         "شربَ ____ اللبنَ. 🥛";
 
       content.appendChild(sentence);
 
     }else{
 
-      const image=document.createElement("div");
+      const visual = document.createElement("div");
 
-      image.className="image-box";
+      visual.className = "visual-box";
+      visual.textContent = mission.emoji;
 
-      image.textContent=mission.emoji;
-
-      content.appendChild(image);
+      content.appendChild(visual);
 
     }
 
-    const choices=document.createElement("div");
-
-    choices.className="choices";
-
-    mission.choices.forEach(choice=>{
-
-      const btn=document.createElement("button");
-
-      btn.className="choice";
-
-      btn.textContent=choice;
-
-      btn.onclick=()=>checkChoice(btn,choice,mission.correct);
-
-      choices.appendChild(btn);
-
-    });
-
-    content.appendChild(choices);
+    createChoiceButtons(
+      content,
+      mission
+    );
 
   }
 
 }
 
-function selectLetter(btn,letter,correctWord){
+/* =====================================================
+   CREATE LETTER BUTTONS
+===================================================== */
 
-  if(btn.classList.contains("selected")) return;
+function createLetterButtons(content,mission){
 
-  btn.classList.add("selected");
+  const lettersBox =
+    document.createElement("div");
+
+  lettersBox.className = "letters";
+
+  mission.letters.forEach(letter=>{
+
+    const button =
+      document.createElement("button");
+
+    button.className = "letter";
+
+    button.textContent = letter;
+
+    button.onclick = function(){
+
+      selectLetter(
+        button,
+        letter,
+        mission.word
+      );
+
+    };
+
+    lettersBox.appendChild(button);
+
+  });
+
+  content.appendChild(lettersBox);
+
+}
+
+/* =====================================================
+   CREATE CHOICE BUTTONS
+===================================================== */
+
+function createChoiceButtons(content,mission){
+
+  const choicesBox =
+    document.createElement("div");
+
+  choicesBox.className = "choices";
+
+  mission.choices.forEach(choice=>{
+
+    const button =
+      document.createElement("button");
+
+    button.className = "choice";
+
+    button.textContent = choice;
+
+    button.onclick = function(){
+
+      checkChoice(
+        button,
+        choice,
+        mission.correct
+      );
+
+    };
+
+    choicesBox.appendChild(button);
+
+  });
+
+  content.appendChild(choicesBox);
+
+}
+
+/* =====================================================
+   SELECT LETTER
+===================================================== */
+
+function selectLetter(
+  button,
+  letter,
+  correctWord
+){
+
+  if(
+    button.classList.contains("selected") ||
+    button.disabled
+  ){
+    return;
+  }
+
+  button.classList.add("selected");
 
   selectedLetters.push(letter);
 
-  document.getElementById("answer").textContent=
+  const answer =
+    document.getElementById("answer");
+
+  answer.textContent =
     selectedLetters.join("");
 
-  if(selectedLetters.length===correctWord.length){
+  if(
+    selectedLetters.length ===
+    correctWord.length
+  ){
 
-    const result=selectedLetters.join("");
+    const result =
+      selectedLetters.join("");
 
-    if(result===correctWord){
+    if(result === correctWord){
+
+      answer.classList.add("success");
 
       correctAnswer();
 
     }else{
+
+      answer.classList.add("error");
 
       wrongAnswer();
 
@@ -856,17 +1548,29 @@ function selectLetter(btn,letter,correctWord){
 
 }
 
-function checkChoice(btn,choice,correct){
+/* =====================================================
+   CHECK CHOICE
+===================================================== */
 
-  if(choice===correct){
+function checkChoice(
+  button,
+  choice,
+  correct
+){
 
-    btn.classList.add("correct");
+  if(button.disabled){
+    return;
+  }
+
+  if(choice === correct){
+
+    button.classList.add("correct");
 
     correctAnswer();
 
   }else{
 
-    btn.classList.add("wrong");
+    button.classList.add("wrong");
 
     wrongAnswer();
 
@@ -874,123 +1578,402 @@ function checkChoice(btn,choice,correct){
 
 }
 
+/* =====================================================
+   CORRECT ANSWER
+===================================================== */
+
 function correctAnswer(){
 
   clearInterval(timerInterval);
 
-  score+=10;
-  clues+=1;
+  score += 10;
+  clues += 1;
 
-  document.getElementById("score").textContent=score;
-  document.getElementById("clues").textContent=clues;
+  document.getElementById("score").textContent =
+    score;
 
-  document.getElementById("feedback").textContent=
+  document.getElementById("clues").textContent =
+    clues;
+
+  const feedback =
+    document.getElementById("feedback");
+
+  feedback.textContent =
     "🎉 إجابة صحيحة! أحسنت يا محقق اللغة!";
 
-  document.getElementById("feedback").style.color="#16a34a";
+  feedback.className =
+    "feedback success";
 
-  document.querySelectorAll(".letter,.choice")
-  .forEach(btn=>btn.disabled=true);
+  document.getElementById("evidenceStatus").textContent =
+    "🔓 تم اكتشاف الدليل!";
 
-  if(currentMission===missions.length-1){
+  /*
+    تعطيل الاختيارات بعد الإجابة الصحيحة
+  */
 
-    setTimeout(showFinal,700);
+  document
+    .querySelectorAll(".letter,.choice")
+    .forEach(button=>{
+      button.disabled = true;
+    });
+
+  /*
+    احتفال بصري بسيط
+  */
+
+  createMiniConfetti();
+
+  if(currentMission === missions.length - 1){
+
+    setTimeout(
+      showFinal,
+      900
+    );
 
   }else{
 
-    document.getElementById("next").style.display="block";
+    document.getElementById("next").style.display =
+      "block";
 
   }
 
 }
 
+/* =====================================================
+   WRONG ANSWER
+===================================================== */
+
 function wrongAnswer(){
 
-  document.getElementById("feedback").textContent=
+  const feedback =
+    document.getElementById("feedback");
+
+  feedback.textContent =
     "❌ ليست الإجابة الصحيحة... ركّز وحاول مرة أخرى!";
 
-  document.getElementById("feedback").style.color="#dc2626";
+  feedback.className =
+    "feedback error";
 
-  document.getElementById("retry").style.display="block";
+  document.getElementById("retry").style.display =
+    "block";
 
 }
+
+/* =====================================================
+   RETRY
+===================================================== */
 
 function retryMission(){
 
   clearInterval(timerInterval);
 
-  selectedLetters=[];
+  selectedLetters = [];
 
-  document.getElementById("feedback").textContent="";
+  document.getElementById("feedback").textContent = "";
+  document.getElementById("feedback").className =
+    "feedback";
 
-  document.getElementById("retry").style.display="none";
+  document.getElementById("retry").style.display =
+    "none";
 
-  document.getElementById("next").style.display="none";
+  document.getElementById("next").style.display =
+    "none";
 
-  renderMission(missions[currentMission]);
+  document.getElementById("evidenceStatus").textContent =
+    "🔒 لم يُحل";
+
+  renderMission(
+    missions[currentMission]
+  );
 
   startTimer();
 
 }
 
+/* =====================================================
+   NEXT MISSION
+===================================================== */
+
 function nextMission(){
 
-  loadMission(currentMission+1);
+  if(
+    currentMission <
+    missions.length - 1
+  ){
+
+    loadMission(
+      currentMission + 1
+    );
+
+  }
 
 }
+
+/* =====================================================
+   TIMER
+===================================================== */
 
 function startTimer(){
 
-  timeLeft=30;
-
-  const timer=document.getElementById("timer");
-
-  timer.textContent=timeLeft;
-
-  timer.className="timer";
-
   clearInterval(timerInterval);
 
-  timerInterval=setInterval(()=>{
+  timeLeft = 30;
 
-    timeLeft--;
+  const timer =
+    document.getElementById("timer");
 
-    timer.textContent=timeLeft;
+  timer.textContent = timeLeft;
 
-    if(timeLeft<=15){
+  timer.className = "timer";
 
-      timer.classList.add("warning");
+  timerInterval =
+    setInterval(()=>{
 
-    }
+      timeLeft--;
 
-    if(timeLeft<=9){
+      timer.textContent =
+        timeLeft;
 
-      timer.classList.remove("warning");
-      timer.classList.add("danger");
+      if(timeLeft <= 15){
 
-    }
+        timer.classList.add(
+          "warning"
+        );
 
-    if(timeLeft<=0){
+      }
 
-      clearInterval(timerInterval);
+      if(timeLeft <= 9){
 
-      document.getElementById("feedback").textContent=
-        "⏰ انتهى الوقت! خُد نفسًا وحاول مرة أخرى.";
+        timer.classList.remove(
+          "warning"
+        );
 
-      document.getElementById("feedback").style.color="#dc2626";
+        timer.classList.add(
+          "danger"
+        );
 
-      document.getElementById("retry").style.display="block";
+      }
 
-    }
+      if(timeLeft <= 0){
 
-  },1000);
+        clearInterval(
+          timerInterval
+        );
+
+        timeExpired();
+
+      }
+
+    },1000);
 
 }
 
+/* =====================================================
+   TIME EXPIRED
+===================================================== */
+
+function timeExpired(){
+
+  const feedback =
+    document.getElementById("feedback");
+
+  feedback.textContent =
+    "⏰ انتهى الوقت! خُد نفسًا وحاول مرة أخرى.";
+
+  feedback.className =
+    "feedback timeout";
+
+  document.getElementById("retry").style.display =
+    "block";
+
+  /*
+    منع الضغط بعد انتهاء الوقت
+  */
+
+  document
+    .querySelectorAll(".letter,.choice")
+    .forEach(button=>{
+      button.disabled = true;
+    });
+
+}
+
+/* =====================================================
+   FINAL SCREEN
+===================================================== */
+
 function showFinal(){
 
-  document.getElementById("game").style.display="none";
-  document.getElementById("final").style.display="block";
+  clearInterval(timerInterval);
+
+  document.getElementById("game").style.display =
+    "none";
+
+  document.getElementById("final").style.display =
+    "block";
+
+  document.getElementById("finalScore").textContent =
+    score;
+
+  document.getElementById("progressBar").style.width =
+    "100%";
+
+  createFinalConfetti();
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+/* =====================================================
+   MINI CONFETTI
+===================================================== */
+
+function createMiniConfetti(){
+
+  const symbols =
+    ["✨","⭐","💙","🧩"];
+
+  for(let i=0;i<8;i++){
+
+    const item =
+      document.createElement("div");
+
+    item.textContent =
+      symbols[
+        Math.floor(
+          Math.random()*symbols.length
+        )
+      ];
+
+    item.style.position =
+      "fixed";
+
+    item.style.left =
+      (30 + Math.random()*40) + "%";
+
+    item.style.top =
+      "45%";
+
+    item.style.fontSize =
+      "22px";
+
+    item.style.zIndex =
+      "9999";
+
+    item.style.pointerEvents =
+      "none";
+
+    document.body.appendChild(item);
+
+    const x =
+      (Math.random()-.5)*180;
+
+    const y =
+      -80 - Math.random()*160;
+
+    item.animate(
+      [
+        {
+          transform:"translate(0,0) scale(1)",
+          opacity:1
+        },
+        {
+          transform:
+            `translate(${x}px,${y}px) scale(.4)`,
+          opacity:0
+        }
+      ],
+      {
+        duration:800,
+        easing:"ease-out"
+      }
+    );
+
+    setTimeout(()=>{
+      item.remove();
+    },850);
+
+  }
+
+}
+
+/* =====================================================
+   FINAL CONFETTI
+===================================================== */
+
+function createFinalConfetti(){
+
+  const symbols =
+    ["🎉","⭐","✨","💙","🧩","🔎"];
+
+  for(let i=0;i<28;i++){
+
+    const item =
+      document.createElement("div");
+
+    item.textContent =
+      symbols[
+        Math.floor(
+          Math.random()*symbols.length
+        )
+      ];
+
+    item.style.position =
+      "fixed";
+
+    item.style.left =
+      Math.random()*100 + "%";
+
+    item.style.top =
+      "-30px";
+
+    item.style.fontSize =
+      (18 + Math.random()*18) + "px";
+
+    item.style.zIndex =
+      "9999";
+
+    item.style.pointerEvents =
+      "none";
+
+    document.body.appendChild(item);
+
+    const x =
+      (Math.random()-.5)*160;
+
+    const y =
+      500 + Math.random()*350;
+
+    const rotate =
+      Math.random()*720 - 360;
+
+    item.animate(
+      [
+        {
+          transform:"translate(0,0) rotate(0)",
+          opacity:1
+        },
+        {
+          transform:
+            `translate(${x}px,${y}px) rotate(${rotate}deg)`,
+          opacity:0
+        }
+      ],
+      {
+        duration:
+          1800 + Math.random()*1000,
+        easing:"ease-out"
+      }
+    );
+
+    setTimeout(()=>{
+      item.remove();
+    },3000);
+
+  }
 
 }
 
